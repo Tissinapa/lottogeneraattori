@@ -28,29 +28,57 @@ class LotteryGame:
     def generate_Numbers(self):
         #Lotto
         if self.gameMode == None or self.gameMode == '1':
-            self.gameMode == "1"
+            if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
+                self.numbers.clear()
+                self.additionalNumbers.clear()
             gen_random_numb = random.sample(range(1,31),7)
             gen_rand_addi_numb =random.sample(range(1,31),1)
             self.numbers.extend(gen_random_numb)
             self.additionalNumbers.extend(gen_rand_addi_numb)
             self.numbers.sort()
+            print(f'Arvotaan Lottonumerot. ')
+            
         #Vikinglotto
         elif self.gameMode == "2":
+            if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
+                self.numbers.clear()
+                self.additionalNumbers.clear()
             gen_random_numb = random.sample(range(1,49),6)
             gen_rand_addi_numb =random.sample(range(1,49),1)
             self.numbers.extend(gen_random_numb)
             self.additionalNumbers.extend(gen_rand_addi_numb)
             self.numbers.sort()
+            print(f'Arvotaan Vikinglottonumerot. ')
         #Eurojackpot
         elif self.gameMode == "3":
+            if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
+                self.numbers.clear()
+                self.additionalNumbers.clear()
             gen_random_numb = random.sample(range(1,51),5)
             gen_rand_addi_numb = random.sample(range(1,13),2)
             self.numbers.extend(gen_random_numb)
             self.additionalNumbers.extend(gen_rand_addi_numb)
             self.numbers.sort()
+            print(f'Arvotaan Eurojackpotnumerot. ')
         
+        return print(f'Ohjelma genereoi numerot {self.numbers} ja lisänumerot {self.additionalNumbers}\n')
+    
+    def selectOwnNumbers(self):
+        user_numb_input = None
+        if self.gameMode == None or self.gameMode == '1':
+            if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
+                self.numbers.clear()
+                self.additionalNumbers.clear()
+            
+            print("Anna numero väliltä 1 - 30 ")
+            while(len(self.numbers) <= 6):
+                user_numb_input = input()
+                #Lisää tarkistus
+                self.numbers.append(user_numb_input)
+            self.numbers.sort()
+            print(f'Annoit numerot {self.numbers}')
         
-        return 
+        return    
 
 def menu():
     
@@ -73,7 +101,7 @@ def main():
         if user_input == "1":
             game.generate_Numbers()
         elif user_input == "2":
-            pass
+            game.selectOwnNumbers()
         elif user_input == "3":
             pass
         elif user_input == "4":
