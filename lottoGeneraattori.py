@@ -65,77 +65,121 @@ class LotteryGame:
     
     def selectOwnNumbers(self):
         user_numb_input = None
-        
-        #Lotto
-        if self.gameMode == None or self.gameMode == '1':
+
+        # Lotto
+        if self.gameMode is None or self.gameMode == '1':
             if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
                 self.numbers.clear()
                 self.additionalNumbers.clear()
-            
+
             print("Anna numero väliltä 1 - 30 ")
-            while(len(self.numbers) <= 6):
-                user_numb_input = int(input())
-                if user_numb_input >= 1 and user_numb_input <= 30:
-                    self.numbers.append(user_numb_input)
-                else: 
-                    print("Annoit väärän numeron!")
+            while len(self.numbers) < 7:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 30:
+                        if user_numb_input not in self.numbers:
+                            self.numbers.append(user_numb_input)
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
+            
             print("Anna lisänumero väliltä 1 - 30: ")
-            user_numb_input = int(input())
-            if user_numb_input >= 1 and user_numb_input <= 30:
-                self.additionalNumbers.append(user_numb_input)
-            else: 
-                print("Annoit väärän numeron!")
+            while True:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 30:
+                        if user_numb_input not in self.numbers and user_numb_input not in self.additionalNumbers:
+                            self.additionalNumbers.append(user_numb_input)
+                            break
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
             
             self.numbers.sort()
             print(f'Annoit numerot {self.numbers} ja lisänumerot {self.additionalNumbers}\n')
-        #Vikinglotto    
+
+        # Vikinglotto
         elif self.gameMode == '2':
             if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
                 self.numbers.clear()
                 self.additionalNumbers.clear()
-            
+
             print("Anna numero väliltä 1 - 49 ")
-            while(len(self.numbers) <= 5):
-                user_numb_input = int(input())
-                if user_numb_input >= 1 and user_numb_input <= 48:
-                    self.numbers.append(user_numb_input)
-                else: 
-                    print("Annoit väärän numeron!")
-            print("Anna lisänumero väliltä 1 - 49: ")
+            while len(self.numbers) < 6:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 48:
+                        if user_numb_input not in self.numbers:
+                            self.numbers.append(user_numb_input)
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
             
-            user_numb_input = int(input())
-            if user_numb_input >= 1 and user_numb_input <= 48:
-                self.additionalNumbers.append(user_numb_input)
-            else: 
-                print("Annoit väärän numeron!")
+            print("Anna lisänumero väliltä 1 - 49: ")
+            while True:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 48:
+                        if user_numb_input not in self.numbers and user_numb_input not in self.additionalNumbers:
+                            self.additionalNumbers.append(user_numb_input)
+                            break
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
             
             self.numbers.sort()
             print(f'Annoit numerot {self.numbers} ja lisänumerot {self.additionalNumbers}\n')
-            
-        #Eurojackpot    
+
+        # Eurojackpot
         elif self.gameMode == '3':
             if len(self.numbers) > 1 and len(self.additionalNumbers) >= 1:
                 self.numbers.clear()
                 self.additionalNumbers.clear()
-            
+
             print("Anna numero väliltä 1 - 50 ")
-            while(len(self.numbers) <= 4):
-                user_numb_input = int(input())
-                if user_numb_input >= 1 and user_numb_input <= 50:
-                    self.numbers.append(user_numb_input)
-                else: 
-                    print("Annoit väärän numeron!")
+            while len(self.numbers) < 5:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 50:
+                        if user_numb_input not in self.numbers:
+                            self.numbers.append(user_numb_input)
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
+            
             print("Anna 2 lisänumeroa väliltä 1 - 50: ")
-            while(len(self.additionalNumbers) <=2):
-                user_numb_input = int(input())
-                if user_numb_input >= 1 and user_numb_input <= 50:
-                    self.additionalNumbers.append(user_numb_input)
-                else: 
-                    print("Annoit väärän numeron!")
-                
+            while len(self.additionalNumbers) < 2:
+                try:
+                    user_numb_input = int(input())
+                    if 1 <= user_numb_input <= 50:
+                        if user_numb_input not in self.numbers and user_numb_input not in self.additionalNumbers:
+                            self.additionalNumbers.append(user_numb_input)
+                        else:
+                            print("Tämä numero on jo annettu! Anna toinen numero.")
+                    else:
+                        print("Annoit väärän numeron!")
+                except ValueError:
+                    print("Syötteen täytyy olla kokonaisluku!")
+            
             self.numbers.sort()
             self.additionalNumbers.sort()
-            print(f'Annoit numerot {self.numbers} ja lisänumerot {self.additionalNumbers}\n')       
+            print(f'Annoit numerot {self.numbers} ja lisänumerot {self.additionalNumbers}\n')
+
         return    
 
     def simulateWinningNumbers(self, iterations):
